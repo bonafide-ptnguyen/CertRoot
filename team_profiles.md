@@ -1,6 +1,6 @@
 # Team Profiles
 
-This document contains the profiles of each team member, including their roles, responsibilities, skills, student IDs, and contact information for the project.
+This document contains the profiles of each team member, including their roles, responsibilities, skills, student IDs, and contact information for the Blockchain-Based Document Verification Platform Capstone project.
 
 ## Anil Manyam
 
