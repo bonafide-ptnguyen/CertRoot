@@ -1,0 +1,91 @@
+### Risk management and legal contract:
+    ClearRisk: This company offers web-based risk management software. Their work involves managing critical data and information, so a solution that adds a layer of verifiable integrity to documents could be a valuable addition to their services.
+    - info@clearrisk.com
+    - https://www.linkedin.com/company/clearrisk-inc/people/
+    - https://www.clearrisk.com/company/leadership
+        + CEO Craig Rowe, ICD.D
+        + Vice President, Engineering, Derrick Dunne, P.Eng
+
+    Spellbook:
+    [reach out to TechNL for connections]
+    - https://www.linkedin.com/company/spellbookai/people
+        + Chris C Gardner [linkedIn or via techNL]
+        + Jack Harrhy <jackharrhy.dev> <me@jackharrhy.com>
+        + Mitchell Hynes [DO.IT Hackathon's Discord channel]
+
+### NL Gov licenses:
+    Application for Fishing/Hunting licenses:
+        Resource Enforcement Division
+        Department of Fisheries, Forestry and Agriculture
+        Government of Newfoundland and Labrador
+        - McDonald, Travis <TravisMcDonald@gov.nl.ca>
+        - REOutreach@gov.nl.ca,
+        - fisheries@gov.nl.ca,
+        - aquaculture@gov.nl.ca
+
+    Application for Licences, Permits & Registrations: 
+        Government Modernization and Service Delivery
+        - DGSNLInfo@gov.nl.ca
+
+### Insurance and mortgage:
+    MUNN Insurance:
+        - https://www.linkedin.com/company/munninsurance/people/
+        - https://www.munninsurance.com/contact/
+
+    Wedgwood Insurance:
+        - https://wedgwoodinsurance.com/contact-st-johns/
+        - info@wedgwoodinsurance.com
+        - https://www.linkedin.com/company/wedgwoodinsurance/people/
+
+    NL Mortgage Brokers:    
+        - https://nlmortgagebrokers.ca/our-blog/
+        - https://nlmortgagebrokers.ca/contact/
+        - admin@nlmortgagebrokers.ca
+
+    Shoreline Mortgages:
+        - https://shorelinemortgages.com/
+        - info@shorelinemortgages.com
+
+### Professional cert and digital fraudulent detect system:
+    Bluedrop ISM:
+    - General email: info@bluedropism.com
+        https://bluedropism.com/yourteam/:
+            + CEO, Emad Rizkalla <https://www.linkedin.com/in/emad-rizkalla-352881/>
+            + VP Software Development, Dave Weir <https://www.linkedin.com/in/dave-weir-25336822/>
+
+    Verafin: A financial fraud detection firm that was acquired by Nasdaq. While they are a large, well-established company, their focus on anti-fraud and secure data makes them a perfect, albeit ambitious, target. They have a strong local presence and are pioneers in the tech sector there.
+        - reach out to Wang, Wenkai <wenkaiw@mun.ca> to ask for Verafin contact and connections
+        - https://verafin.com/contact/
+        - students@verafin.com
+
+### Tech connectors:
+    techNL: This is the provincial association for the technology sector. They can be a great resource for networking and finding out which companies might be a good fit for your project.
+        - Rahaf HajAhmad <rahaf@technl.ca>
+        - NicK Rowe-Mahon <nicholas@technl.ca>
+
+    Genesis: This is a business incubator that helps grow tech startups in the province. They have a portfolio of companies, and contacting them could be a good way to get connected with a relevant startup.
+        - Zeeshan Rizvi <linkedIn>
+        - Cadigan, Matthew <booking form>
+
+    YMCA:
+        Senior Business Consultant
+        Business Planning Program
+        - Jess Jones <jess.jones@nl.ymca.ca>
+
+    TechNest:
+        - Afolasade Bello <afolasade@technestcommunity.com>
+
+### Software solution and consultancy
+    CoLab: A software company that helps engineers collaborate on files in real-time. 
+        - Freddie Pike <freddie.pike@nleats.com>
+
+    Enaimco: 
+    - Automated Audit Logs: The immutability of a blockchain ledger would provide a secure, automated audit log for any credential or document verification. This would reduce manual effort for Enaimco's clients and enhance their ability to demonstrate compliance with regulatory requirements.
+    - Reduced Operational Risk: By ensuring that personnel and equipment have valid credentials, your project would directly help Enaimco's clients "reduce risk," a core benefit highlighted on their website.
+        - https://enaimco.com/what-we-do/
+        - https://enaimco.com/who-we-are/our-team/
+        - info@enaimco.com
+        - Ethan Crann <ecrann@protonmail.com>
+
+
+
