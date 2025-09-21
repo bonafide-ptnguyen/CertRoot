@@ -1,4 +1,4 @@
-### Risk management and legal contract:
+### Risk management and legal contract: [Gerard]
     ClearRisk: This company offers web-based risk management software. Their work involves managing critical data and information, so a solution that adds a layer of verifiable integrity to documents could be a valuable addition to their services.
     - info@clearrisk.com
     - https://www.linkedin.com/company/clearrisk-inc/people/
@@ -27,7 +27,7 @@
         Government Modernization and Service Delivery
         - DGSNLInfo@gov.nl.ca
 
-### Insurance and mortgage:
+### Insurance and mortgage: [Ronit]
     MUNN Insurance:
         - https://www.linkedin.com/company/munninsurance/people/
         - https://www.munninsurance.com/contact/
@@ -46,7 +46,7 @@
         - https://shorelinemortgages.com/
         - info@shorelinemortgages.com
 
-### Professional cert and digital fraudulent detect system:
+### Professional cert and digital fraudulent detect system: [Anil]
     Bluedrop ISM:
     - General email: info@bluedropism.com
         https://bluedropism.com/yourteam/:
@@ -58,7 +58,7 @@
         - https://verafin.com/contact/
         - students@verafin.com
 
-### Tech connectors:
+### Tech connectors: [Priyanka]
     techNL: This is the provincial association for the technology sector. They can be a great resource for networking and finding out which companies might be a good fit for your project.
         - Rahaf HajAhmad <rahaf@technl.ca>
         - NicK Rowe-Mahon <nicholas@technl.ca>
@@ -75,7 +75,7 @@
     TechNest:
         - Afolasade Bello <afolasade@technestcommunity.com>
 
-### Software solution and consultancy
+### Software solution and consultancy [Sadia]
     CoLab: A software company that helps engineers collaborate on files in real-time. 
         - Freddie Pike <freddie.pike@nleats.com>
 
