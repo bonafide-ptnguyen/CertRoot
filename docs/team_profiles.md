@@ -43,16 +43,16 @@ This document contains the profiles of each team member, including their roles, 
 | **Attribute**         | **Details**                                                                                                 |
 |-----------------------|-------------------------------------------------------------------------------------------------------------|
 | **Personal Name**     | Sadia Alam                                                                                                |
-| **Student ID**        |                                                                                                     |
-| **Contact Info**      |                                                                                               |
+| **Student ID**        | 202295835                                                                                                    |
+| **Contact Info**      | salam22@mun.ca                                                                                              |
 | **Role**              | Rotatable                                                                                                    |
 | **Responsibilities**  | - Join Scrum meeting.                                                                                        |
 |                       | - Design and implement the project as required and planned.                                                  |
 |                       | - Ensure consistent task completion according to the schedule.                                               |
-| **Skills**            | - **Languages**:                                                                     |
-|                       | - **Web Frameworks**:                                                                   |
-|                       | - **Frontend**:                                                                          |
-|                       | - **Version Control**:                                                                            |
+| **Skills**            | - **Languages**: Python, Java, JavaScript                                                                    |
+|                       | - **Web Frameworks**: Nodejs                                                                   |
+|                       | - **Frontend**: CSS, Bootstrap, HTML                                                                         |
+|                       | - **Version Control**: Git, GitHub                                                                           |
 
 ---
 
