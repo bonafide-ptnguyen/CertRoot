@@ -1,0 +1,525 @@
+\documentclass{article}
+
+
+
+% Language setting
+
+% Replace `english' with e.g. `spanish' to change the document language
+
+\usepackage[english]{babel}
+
+
+
+% Set page size and margins
+
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+
+
+% Useful packages
+
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+
+\title{CertRoot - Design Specifications}
+
+\author{Nguyen, Thien Phuc}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{Revision History}
+
+\begin{center} 
+\begin{tabular}{|l|l|l|l|}\hline
+\textbf{Revision}& \textbf{Date}& \textbf{Created By}& \textbf{Description} \\\hline
+0.1& October 1st, 2025& Nguyen, Thien Phuc&Initial version\\\hline
+\end{tabular}
+\end{center} 
+
+
+\section{Project Overview}
+
+\subsection{Problem}
+
+In engineering and manufacturing, design reviews often end without an immutable record of the final files and feedback. This creates a trust gap, since firms cannot independently prove that an approved design hasn’t been altered. The result is exposure to IP risks, disputes, and supply chain liability.
+
+\subsection{Solution}
+
+CertRoot integrates with CoLab to create a blockchain-based audit log for every closed review. Final design files and comment threads are hashed and sealed on-chain, providing a verifiable record of integrity. This ensures designs can be independently validated at any time, giving firms stronger IP protection, reduced liability, and greater client confidence.
+
+\subsection{Development team}
+
+\begin{itemize}
+\item Nguyen, Thien Phuc (Gerard)
+\item Saha, Priyanka
+\item Gajjar, Ronit Hirenbhai
+\item Manyam, Anil
+\item Alam, Sadia
+\end{itemize}
+
+\subsection{Client}
+
+\begin{itemize}
+\item Mr. Freddie Pike, Staff Developer and Technical Onboarding Manager at CoLab Software
+\end{itemize}
+
+\subsection{Project Timeline}
+
+\begin{itemize}
+\item Start date: September 30th, 2025
+\item End date: November 30th, 2025 
+\end{itemize}
+
+
+\section{How CertRoot Works}
+
+Think of a \textbf{hash} like a \textbf{fingerprint for a file}.
+
+\begin{itemize}
+\item If you change even one pixel in a drawing or one word in a comment, the fingerprint comes out completely different.
+\end{itemize}
+
+CertRoot takes the \textbf{fingerprint (hash) of your design files and reviews threads} and writes it to a \textbf{blockchain}.
+
+\begin{itemize}
+\item Blockchain is just a special type of database that nobody can secretly change. Once something is written, it stays there forever.
+\end{itemize}
+
+Later, if someone uploads the same file again, CertRoot re-creates the fingerprint and checks it against what’s stored on the blockchain.
+
+
+\begin{itemize}
+\item If they match → file is authentic, untouched since approval.
+\item If they don’t match → file has been changed.
+\end{itemize}
+
+So in plain terms:
+
+
+\begin{itemize}
+\item \textbf{Cryptography = making a file’s unique fingerprint.}
+\item \textbf{Blockchain = keeping that fingerprint in a tamper-proof ledger.}
+\end{itemize}
+
+Together, they give the 'digital notary' effect.
+
+
+\section{Project Deliverables}
+
+The final product is a modular suite of tools designed for seamless integration into CoLab’s Python backend and React frontend environments.
+
+
+\subsection{\textbf{The Core Trust Layer (Solidity Smart Contract)}}
+
+● \textbf{EVM Smart Contract:} The fully developed, tested, and audited Solidity smart contract deployed to the agreed-upon EVM-compatible network.
+
+\begin{itemize}
+    \item \textbf{Functions:} Contains only the essential public functions:
+\end{itemize}
+
+\begin{itemize}
+    \begin{itemize}
+        \item recordHash (for certification). 
+        \item checkHashExists (for verification).
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Immutability:} The final compiled ABI (Application Binary Interface) and Contract Address will be delivered for CoLab's integration reference.
+\end{itemize}
+
+
+\subsection{\textbf{The Python SDK (Backend Engine)}}
+
+● \textbf{Python Package (certroot-sdk):} A fully documented, pip-installable Python package.
+
+\begin{itemize}
+    \item \textbf{Secure Certification:} 
+\end{itemize}
+
+\begin{itemize}
+    \begin{itemize}
+        \item The core function, sdk.certify\_file(file\_path, metadata), handles local hashing, secure wallet key management, gas estimation, and transaction signing via web3.py.
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+
+    \item \textbf{Integrity Check:} 
+\end{itemize}
+
+\begin{itemize}
+    \begin{itemize}
+        \item The sdk.check\_integrity(hash) function performs the simple query for internal system checks.
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+
+    \item \textbf{Code Quality:} 
+\end{itemize}
+
+\begin{itemize}
+    \begin{itemize}
+        \item All Python code will be unit-tested and conform to Python best practices, including robust exception handling for network and transaction failures.
+    \end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+
+    \item \textbf{Documentation:} 
+\end{itemize}
+
+\begin{itemize}
+    \begin{itemize}
+        \item Comprehensive README and integration guide with clear examples for CoLab engineers.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsection{\textbf{The React Component Library (Frontend Integration)}}
+
+● \textbf{NPM Package (@certroot/react-ui):} A modular npm package containing key components.
+
+
+\begin{itemize}
+
+    \item \textbf{Certification Component:} 
+\end{itemize}
+
+
+\begin{itemize}
+    \begin{itemize}
+        \item A drop-in \textless CertifyButton\textgreater  component that triggers the necessary API calls to the Python backend to initiate the certification process.
+    \end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+
+    \item \textbf{Verification Component:} 
+\end{itemize}
+
+
+\begin{itemize}
+    \begin{itemize}
+        \item A component like \textless IntegrityBadge\textgreater   that displays the verification status (e.g., "Certified" / "Tampered") directly in the CoLab UI.
+    \end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+
+    \item \textbf{Documentation:} 
+\end{itemize}
+
+
+\begin{itemize}
+    \begin{itemize}
+        \item Clear usage instructions, props definitions, and examples for quick adoption.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection{\textbf{The Public Verification Portal (External Assurance)}}
+
+This crucial tool ensures third-party trust and compliance.
+
+
+\begin{itemize}
+
+    \item \textbf{Standalone Web Application:} 
+\end{itemize}
+
+
+\begin{itemize}
+    \begin{itemize}
+        \item A single-page application (SPA), hosted separately, designed for external use (auditors, clients).
+    \end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+
+    \item \textbf{Functionality:} 
+\end{itemize}
+
+
+\begin{itemize}
+    \begin{itemize}
+        \item Allows a user to upload a file to perform a local hash calculation and then makes a direct, free read-only view call to the EVM contract.
+    \end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+
+    \item \textbf{Trust:} 
+\end{itemize}
+
+
+\begin{itemize}
+    \begin{itemize}
+        \item Provides independent, trustless proof of integrity without requiring the auditor to interact with CoLab's production systems.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\section{Functional Requirements}
+
+\subsection{\textbf{Python SDK}}
+
+\begin{center}
+\begin{tabular}{|l|p{10cm}|}\hline 
+  \textbf{Requirement}&\textbf{Description}\\\hline
+  Local File Hashing&
+    \begin{itemize}
+        \item Must generate SHA-256 hash values for files and comment threads locally on server. 
+        \item supporting large CAD/image/PDF files via efficient I/O streaming.
+    \end{itemize}\\\hline 
+
+  Secure EVM Certification&
+    \begin{itemize}
+        \item sdk.certify\_file(), must securely manage the certification wallet's private key.
+    \end{itemize}\\\hline 
+
+
+  Record Data Structure&
+  Input:
+    \begin{itemize}
+        \item The file hash(es). 
+        \item Comment hash.
+        \item CoLab metadata (User ID, Project ID).
+        \item Timestamp.
+    \end{itemize}
+    Output:
+    \begin{itemize}
+        \item A single, compact data structure for the Solidity contract.
+    \end{itemize}\\\hline 
+
+
+  Internal Integrity Check&
+    \begin{itemize}
+        \item sdk.check\_integrity(hash) method to quickly query the EVM contract for a hash's existence.
+    \end{itemize}\\\hline 
+
+
+  CoLab Workflow Integration&
+    \begin{itemize}
+        \item Provide clear hooks to automatically trigger certification upon a 'ReviewClosed' event in CoLab's Python backend.
+    \end{itemize}\\\hline 
+\end{tabular}
+\end{center}
+
+\subsection{\textbf{EVM Smart Contract}}
+
+\begin{center}
+\begin{tabular}{|l|p{10cm}|}\hline 
+  \textbf{Requirement}&\textbf{Description}\\\hline
+  Data Immutability&
+    \begin{itemize}
+        \item Store hash records permanently on the EVM-compatible chain using the recordHash() function.
+    \end{itemize}\\\hline 
+
+  Verification Retrieval&
+    \begin{itemize}
+        \item Expose a read-only view function (checkHashExists()) that allows for quick, gas-free public verification checks.
+    \end{itemize}\\\hline 
+
+
+  ABI and Address&
+  \begin{itemize}
+        \item The final Contract Address and the Application Binary Interface (ABI) JSON file must be delivered for all integration efforts.
+    \end{itemize}\\\hline 
+\end{tabular}
+\end{center}
+
+
+
+\subsection{\textbf{React Component Library \& Portal }}
+
+\begin{center}
+\begin{tabular}{|l|p{10cm}|}\hline 
+  \textbf{Requirement}&\textbf{Description}\\\hline
+  Certification Trigger Component&
+    \begin{itemize}
+        \item Deliver a reusable React component (e.g., \textless CertifyButton\textgreater  ) that triggers the certification flow via CoLab's backend API.
+    \end{itemize}\\\hline 
+
+  Public Verification Portal&
+    \begin{itemize}
+        \item A standalone React application where an external user can upload a file, calculate the hash locally in the browser, and make a direct EVM view call for verification.
+    \end{itemize}\\\hline 
+
+
+  Display Results&
+  Verification results: 
+  \begin{itemize}
+\item Must be clear and display block details.
+\item Show Timestamp. 
+\item Show metadata. 
+\item URL link to the EVM block explorer.
+    \end{itemize}\\\hline 
+\end{tabular}
+\end{center}
+
+\section{Non-Functional Requirements}
+
+\begin{center}
+\begin{tabular}{|l|p{10cm}|}\hline 
+  \textbf{Requirement}&\textbf{Description}\\\hline
+  Security (Wallet)&
+    \begin{itemize}
+        \item Absolute priority must be placed on the secure management and isolation of the Python SDK's private key used for signing certification transactions.
+    \end{itemize}\\\hline 
+
+  Performance (Hashing)&
+    \begin{itemize}
+        \item Python SDK hashing implementation must be optimized to handle multi-gigabyte files efficiently to avoid backend latency.
+    \end{itemize}\\\hline 
+  Usability (React)&
+    \begin{itemize}
+\item The React components and the Verification Portal must adhere to CoLab's UI standards. 
+\item Provide clear status feedback (e.g., "Transaction Pending," "Certified") to minimize user confusion about blockchain processes.
+    \end{itemize}\\\hline
+ Scalability (EVM)&
+    \begin{itemize}
+        \item The smart contract must be gas-optimized to ensure transaction costs remain low even as the usage volume increases.
+    \end{itemize}\\\hline
+ Documentation&
+    \begin{itemize}
+        \item Provide comprehensive documentation for the Python SDK (installation, usage) and the React components (props, examples).
+    \end{itemize}\\\hline 
+\end{tabular}
+\end{center}
+
+
+\section{Use Cases}
+
+\begin{center}
+\begin{tabular}{|p{2cm}|p{3cm}|p{8.5cm}|}\hline
+\textbf{Use Case} & \textbf{Primary Actor/Component} & \textbf{Description (EVM \& SDK Context)}\\\hline
+\multicolumn{3}{|l|}{\textbf{1. Close Review \& Seal Design}}\\\hline
+ & CoLab Backend (Python SDK) &
+\begin{itemize}
+    \item The Python SDK automatically triggers upon the ReviewClosed event.
+    \item It securely hashes all final artifacts, bundles the data
+    \item It uses the certification wallet to sign and submit the transaction (paying gas) to the EVM contract.
+\end{itemize}\\\hline
+
+\multicolumn{3}{|l|}{\textbf{2. Verify File Integrity}}\\\hline
+ & External Auditor (Public React Portal) &
+\begin{itemize}
+    \item The auditor uploads the file to the React Portal.
+    \item The browser calculates the hash and makes a direct, gas-free view call.
+    \item EVM contract is deployed for instant, trustless verification.
+\end{itemize}\\\hline
+
+\multicolumn{3}{|l|}{\textbf{3. API-based Integration}}\\\hline
+ & CoLab Backend Engineering Team &
+\begin{itemize}
+    \item A user imports the certroot-sdk Python package.
+    \item \texttt{sdk.certify\_file()} can be integrated into core review closure logic, abstracting the complex EVM process.
+\end{itemize}\\\hline
+
+\multicolumn{3}{|l|}{\textbf{4. View Blockchain Record}}\\\hline
+ & CoLab User (React Component) &
+\begin{itemize}
+    \item A user clicks an "Integrity Proof" link.
+    \item The React Component retrieves the transaction details from a public EVM Block Explorer.
+    \item The system will redirect and display the timestamp and certification metadata.
+\end{itemize}\\\hline
+
+\multicolumn{3}{|l|}{\textbf{5. Optional File Archival}}\\\hline
+ & Python SDK \& External Storage &
+\begin{itemize}
+    \item The Python SDK manages the secure upload of large files to an external system (e.g., S3).
+    \item It then logs the file's hash and the resulting storage URL/pointer in the EVM contract metadata.
+\end{itemize}\\\hline
+
+\multicolumn{3}{|l|}{\textbf{6. Audit Trail \& Reporting}}\\\hline
+ & Compliance Officer (CoLab Backend Logic) &
+\begin{itemize}
+    \item Python SDK can be used to query a range of recorded hashes from the EVM contract.
+    \item Provide a compiled report that shows every sealed design for a given project ID for regulatory review.
+\end{itemize}\\\hline
+
+\end{tabular}
+\end{center}
+
+
+\section{Development Schedule}
+
+\subsection{\textbf{Phase 1: Foundation \& Backend Focus}}
+
+\begin{center}
+\begin{tabular}{|p{2.5cm}|p{5cm}|p{4cm}|p{2.5cm}|}\hline
+\textbf{Date Range} & \textbf{Focus (4 Devs)} & \textbf{Solo Focus (1 Dev)} & \textbf{Client Meeting} \\\hline
+% Row 1
+Oct 1 – Oct 4 & 
+    Project setup: EVM/Solidity environment, Python SDK boilerplate, initial CI/CD foundation. & 
+    Verification Portal UI: Build the front-end shell for the public verification tool (React). & 
+    None \\\hline
+% Row 2
+Oct 7 – Oct 11 & 
+    Solidity MVP: Develop the immutable smart contract (recordHash). Develop the core Python hashing function. & 
+    Verification Portal UX: Design and implement the verification result display logic. & 
+    Oct 13: Kick-off/Review \\\hline
+% Row 3
+Oct 14 – Oct 18 & 
+    Python SDK Write Logic: Implement web3.py for secure transaction signing (wallet management, gas estimation). & 
+    Demo Prep: Integrate the client-side hashing function for the public portal. & 
+    None \\\hline
+% Row 4
+Oct 21 – Oct 25 & 
+    Integration \& Test: Full E2E testing (Python to Solidity testnet). Finalize Python SDK CI/CD. & 
+    Demo Prep: Final E2E testing of the verification read function on the portal. & 
+    Oct 25: Phase 1 Demo \\\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{\textbf{Phase 2: Client Integration \& Polish }}
+
+\begin{center}
+\begin{tabular}{|p{2.5cm}|p{5cm}|p{4cm}|p{2.5cm}|}\hline
+\textbf{Date Range} & \textbf{Focus (4 Devs)} & \textbf{Maintenance (1 Dev)} & \textbf{Client Meeting} \\\hline
+% Row 1
+Nov 4 – Nov 8 & 
+    React Component 1: Develop the core <CertifyButton> and set up the NPM package structure and CI/CD. & 
+    Maintenance \& Docs: Write comprehensive Python SDK documentation and fix any Phase 1 issues. & 
+    None \\\hline
+% Row 2
+Nov 11 – Nov 15 & 
+    React Component 2 \& Portal: Develop the <IntegrityBadge> and finalize the Public Verification Portal UI/UX. & 
+    Refinement: Final Python SDK changes based on client review feedback. & 
+    Nov 17: Component Review \\\hline
+% Row 3
+Nov 18 – Nov 22 & 
+    QA \& Packaging: Full integration testing (React to Python SDK). Final NPM package and Python wheel preparation. & 
+    Release Prep: Finalize all documentation, release notes, and prepare for handover. & 
+    None \\\hline
+% Row 4
+Nov 25 – Nov 29 & 
+    Final Submission: Prepare the final presentation and deliver all source code, libraries, and documentation. & 
+    Handover Prep: Prepare a technical walkthrough of the Python SDK security features. & 
+    Dec 1: Final Handover \\\hline
+\end{tabular}
+\end{center}
+
+\end{document}
