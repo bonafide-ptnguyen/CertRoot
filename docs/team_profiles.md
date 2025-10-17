@@ -7,16 +7,16 @@ This document contains the profiles of each team member, including their roles, 
 | **Attribute**         | **Details**                                                                                                 |
 |-----------------------|-------------------------------------------------------------------------------------------------------------|
 | **Personal Name**     | Anil Manyam                                                                                               |
-| **Student ID**        |                                                                                                     |
-| **Contact Info**      |                                                                                               |
+| **Student ID**        | 202483873                                                                                                    |
+| **Contact Info**      | amanyam@mun.ca                                                                                              |
 | **Role**              | Rotatable                                                                                                    |
 | **Responsibilities**  | - Join Scrum meeting.                                                                                        |
 |                       | - Design and implement the project as required and planned.                                                  |
 |                       | - Ensure consistent task completion according to the schedule.                                               |
-| **Skills**            | - **Languages**:                                                                     |
-|                       | - **Web Frameworks**:                                                                    |
-|                       | - **Frontend**:                                                                          |
-|                       | - **Version Control**:                                                                            |
+| **Skills**            | - **Languages**: Python                                                                    |
+|                       | - **Web Frameworks**: Flask                                                                   |
+|                       | - **Frontend**: React                                                                         |
+|                       | - **Version Control**: GitHub                                                                           |
 
 ---
 
