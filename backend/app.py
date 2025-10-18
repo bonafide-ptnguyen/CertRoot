@@ -228,6 +228,8 @@
 
 
 
+
+
 from fastapi import FastAPI, File, UploadFile
 import os, tempfile
 from contextlib import asynccontextmanager
@@ -236,7 +238,6 @@ from core.database import find_file_by_hash
 import uvicorn
 from dotenv import load_dotenv
 load_dotenv()
-
 
 
 @asynccontextmanager
@@ -250,23 +251,18 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="File Integrity Service", version="1.0.0", lifespan=lifespan)
 
-
-# --- Endpoints ---
 @app.post("/verify")
 async def verify_uploaded_file(file: UploadFile = File(...)):
     """Upload a file, hash it, and check DB for match."""
     try:
-        # Save uploaded file temporarily
         with tempfile.NamedTemporaryFile(delete=False) as tmp:
             content = await file.read()
             tmp.write(content)
             tmp_path = tmp.name
 
-      
         file_hash = hash_file(tmp_path)
         os.remove(tmp_path)
 
-     
         record = find_file_by_hash(file_hash)
         if record:
             return {
@@ -284,5 +280,13 @@ async def verify_uploaded_file(file: UploadFile = File(...)):
         return {"status": "error", "error": str(e)}
 
 
+
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+    host = "127.0.0.1"
+    port = 8000
+
+    print("\nServer starting...")
+    print(f"Local:     http://{host}:{port}")
+    print(f"API Docs:  http://{host}:{port}/docs\n")
+
+    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=True)
