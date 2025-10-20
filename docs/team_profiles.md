@@ -61,16 +61,16 @@ This document contains the profiles of each team member, including their roles, 
 | **Attribute**         | **Details**                                                                                                 |
 |-----------------------|-------------------------------------------------------------------------------------------------------------|
 | **Personal Name**     | Ronit Hirenbhai Gajjar                                                                                                |
-| **Student ID**        |                                                                                                     |
-| **Contact Info**      |                                                                                               |
+| **Student ID**        | 202488048                                                                                             |
+| **Contact Info**      | rhgajjar@mun.ca                                                                                              |
 | **Role**              | Rotatable                                                                                                    |
 | **Responsibilities**  | - Join Scrum meeting.                                                                                        |
 |                       | - Design and implement the project as required and planned.                                                  |
 |                       | - Ensure consistent task completion according to the schedule.                                               |
 | **Skills**            | - **Languages**:                                                                     |
 |                       | - **Web Frameworks**:                                                                   |
-|                       | - **Frontend**:                                                                          |
-|                       | - **Version Control**:                                                                            |
+|                       | - **Frontend**: CSS ,HTML                                                                         |
+|                       | - **Version Control**:Github                                                                           |
 
 ---
 
