@@ -89,7 +89,8 @@ except ImportError as e:
     sys.exit(1)
 
 # --- Configuration & Utility Functions ---
-FILE_TO_CERTIFY = "inputs/frog.jpg"
+# FILE_TO_CERTIFY = "inputs/frog.jpg"
+FILE_TO_CERTIFY = "inputs/earth.glb"
 
 def hex_to_bytes32(hex_hash: str) -> bytes:
     """Converts a 64-character hexadecimal string hash to a 32-byte byte string."""
@@ -116,8 +117,13 @@ def deploy_certifier() -> VyperContract:
         sys.exit(1)
 
     # --- Deploy the Contract ---
-    certifier_contract: VyperContract = file_certifier.deploy()
-    print("Contract deployed successfully.")
+
+    # anvil
+    # certifier_contract: VyperContract = file_certifier.at("0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9")
+
+    # tenderly
+    certifier_contract: VyperContract = file_certifier.at("0x8f2A07bb90F8591141242773a88969E9e88F2D6A")
+    print("Contract connected successfully.")
 
     try:
         # 1. Generate hash
@@ -129,6 +135,10 @@ def deploy_certifier() -> VyperContract:
         print(f"File Hash (Hex): {raw_hash_result}")
         print(f"Contract Input (Bytes[32]): {hash_bytes32.hex()}...")
 
+        # total record before storing file hash
+        total_records = certifier_contract.get_total_records() 
+        print(f"Total records before store:", total_records)
+
         # --- STORE HASH ---
         # This executes the state-changing transaction
         stored_record_id, stored_file_hash, stored_block_number, stored_timestamp = certifier_contract.store(hash_bytes32)
@@ -138,36 +148,45 @@ def deploy_certifier() -> VyperContract:
         print(f"  - Block Number:    {stored_block_number}")
         print(f"  - Block Timestamp:    {stored_timestamp}")
 
-        # Get the ID of the stored record (which is 0 for the first one)
+        # total record before storing file hash
         total_records = certifier_contract.get_total_records() 
-        record_id = total_records - 1 
-
-        print(f"\nRecord stored at ID: {record_id}")
         print(f"Total records after store:", total_records)
 
-        # --- RETRIEVE RECORD BY ID (The ONLY way to verify retrieval) ---
-        print(f"\n--- Starting Retrieval by Sequential ID (ID: {record_id}) ---")
-        
-        # Call the simple retrieve function with the sequential ID
-        hash_retrieved_bytes, block_num, timestamp = certifier_contract.retrieve(record_id)
-        
-        # Convert retrieved bytes back to the readable hex string
-        hash_retrieved_hex = bytes32_to_hex(hash_retrieved_bytes)
-        
-        print("Verification Record:")
-        print(f"  - Hash (Hex):         {hash_retrieved_hex}")
-        print(f"  - Block Number:       {block_num}")
-        print(f"  - Block Timestamp:    {timestamp}")
-
-        if hash_retrieved_hex == raw_hash_result:
-            print("\nVerification SUCCESS: Retrieved hash matches stored hash!")
-            print("Status: Contract is working correctly on sequential storage.")
-        else:
-            print("\nVerification FAILED: Hashes do not match.")
-        
     except Exception as e:
         print(f"An error occurred during transaction or hashing: {e}", file=sys.stderr)
         sys.exit(1)
+
+    # Get the ID of the stored record (which is 0 for the first one)
+    total_records = certifier_contract.get_total_records() 
+    record_id = total_records - 1 
+
+    print(f"\nRecord stored at ID: {record_id}")
+    print(f"Total records after store:", total_records)
+
+    # latest record
+    hash_retrieved_bytes, block_num, timestamp = certifier_contract.retrieve(record_id)
+
+    # Convert retrieved bytes back to the readable hex string
+    hash_retrieved_hex = bytes32_to_hex(hash_retrieved_bytes)
+    
+    print(f"Verification Record: {record_id}")
+    print(f"  - Hash (Hex):         {hash_retrieved_hex}")
+    print(f"  - Block Number:       {block_num}")
+    print(f"  - Block Timestamp:    {timestamp}")
+
+    # get the previous record
+    record_id -= 1
+
+    if (record_id >= 0):
+        hash_retrieved_bytes, block_num, timestamp = certifier_contract.retrieve(record_id)
+
+        # Convert retrieved bytes back to the readable hex string
+        hash_retrieved_hex = bytes32_to_hex(hash_retrieved_bytes)
+        
+        print(f"Verification Record: {record_id}")
+        print(f"  - Hash (Hex):         {hash_retrieved_hex}")
+        print(f"  - Block Number:       {block_num}")
+        print(f"  - Block Timestamp:    {timestamp}")
     
     return certifier_contract
 
