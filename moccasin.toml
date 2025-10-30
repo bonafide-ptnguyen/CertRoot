@@ -1,0 +1,20 @@
+[project]
+src = "src"
+dot_env=".env"
+
+[networks.anvil]
+url="http://127.0.0.1:8545"
+save_to_db=false
+prompt_live=false
+default_account_name="anvil1"
+unsafe_password_file="~/.moccasin/unsafe-passwords/anvil1"
+
+[networks.tenderly]
+url="$TENDERLY_RPC_URL"
+save_to_db=false
+default_account_name="tenderly1"
+# unsafe_password_file="~/.moccasin/unsafe-passwords/tenderly1"
+explorer_uri="https://eth-sepolia.blockscout.com/"
+explorer_type="blockscout"
+
+# You can view all configuration options at https://cyfrin.github.io/moccasin/all_moccasin_toml_parameters.html
