@@ -235,6 +235,7 @@ import os, tempfile
 from contextlib import asynccontextmanager
 from core.file_hasher import hash_file, process_folder_once
 from core.database import find_file_by_hash
+from core.interact_certifier import retrieve_record
 import uvicorn
 from dotenv import load_dotenv
 load_dotenv()
@@ -265,10 +266,18 @@ async def verify_uploaded_file(file: UploadFile = File(...)):
 
         record = find_file_by_hash(file_hash)
         if record:
+            hash_retrieved_hex, block_num, timestamp = retrieve_record(record["recordId"])
+            record["block_num"] = block_num
+            record["timestamp"] = timestamp
+            record["hash_verified"] = hash_retrieved_hex
             return {
                 "status": "original",
                 "matched_file": record["filename"],
-                "hash": file_hash,
+                "hash": record["hash"],
+                "recordId": record["recordId"],
+                "block_num": block_num,
+                "timestamp": timestamp, 
+                "hash_verified": hash_retrieved_hex
             }
         else:
             return {

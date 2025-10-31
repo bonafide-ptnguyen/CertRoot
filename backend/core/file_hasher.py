@@ -2,6 +2,7 @@ import os, csv
 from blake3 import blake3
 from typing import List, Tuple
 from .database import upsert_hashes
+from .interact_certifier import store_record, retrieve_record, get_total_record
 
 BLOCK_SIZE = 1024 * 1024
 INPUT_DIR = "files"
@@ -31,7 +32,7 @@ def write_csv(data: List[Tuple[str, str]]):
     try:
         with open(OUTPUT_FILE, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            writer.writerow(["Filename", "Hash"])
+            writer.writerow(["Filename", "Hash", "Record ID", "Transaction Hash"])
             writer.writerows(data)
     except Exception as e:
         print(f"Error writing CSV: {e}")
@@ -51,7 +52,14 @@ def process_folder_once() -> List[Tuple[str, str]]:
         if os.path.isfile(fpath) and fname not in existing:
             try:
                 digest = hash_file(fpath)
-                new_data.append((fname, digest))
+                # save record on blockchain - START
+                new_record_Id, digest, tx_hash = store_record(fpath)
+                print(f"  - Record ID :         {new_record_Id}")
+                print(f"  - File hash :         {digest}")
+                print(f"  - transaction hash :       {tx_hash}")
+                print("------------------------------------\n")    
+                # save record on blockchain - END
+                new_data.append((fname, digest, new_record_Id))
                 print(f"🔹 New file hashed: {fname}")
             except Exception as e:
                 print(f" Error hashing {fname}: {e}")

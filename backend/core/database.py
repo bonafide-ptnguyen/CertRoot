@@ -34,10 +34,10 @@ def upsert_hashes(data):
         ops = [
             UpdateOne(
                 {"filename": fn},
-                {"$set": {"filename": fn, "hash": digest}},
+                {"$set": {"filename": fn, "hash": digest, "recordId": new_record_Id}},
                 upsert=True
             )
-            for fn, digest in data
+            for fn, digest, new_record_Id in data
         ]
         if not ops:
             return

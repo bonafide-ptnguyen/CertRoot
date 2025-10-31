@@ -1,12 +1,11 @@
 # from vyper import compile_code
 from web3 import Web3
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
 from .encrypt_key import KEYSTORE_PATH
 import getpass
 from eth_account import Account
 from .json_utils import get_config
-from .file_hasher import hash_file
 
 # RPC_URL=os.getenv("RPC_URL")
 # MY_ADDRESS=os.getenv("MY_ADDRESS")
@@ -56,6 +55,8 @@ def retrieve_record(recordId):
 def store_record(singleFilePath):
     contract_instance = connect_contract()
 
+    # lazy import to avoid circular import between core modules
+    from .file_hasher import hash_file
     digest = hash_file(singleFilePath)
 
     # Convert hash for contract
@@ -82,27 +83,3 @@ def decrypt_key() -> str:
 def get_total_record():
     contract_instance = connect_contract()
     return contract_instance.functions.get_total_records().call()
-
-# def main():
-#     print(f"  - Total records:       {get_total_record()}") 
-#     print("------------------------------------\n")
-
-#     recordId = 3
-#     hash_retrieved_hex, block_num, timestamp = retrieve_record(recordId)
-#     print(f"Verification Record: {recordId}")
-#     print(f"  - Hash (Hex):         {hash_retrieved_hex}")
-#     print(f"  - Block Number:       {block_num}")
-#     print(f"  - Block Timestamp:    {timestamp}")
-#     print("------------------------------------\n")
-
-#     singleFilePath = "/home/gerard/Software/Blockchain_Web_App/CertRoot/backend/files/test.txt"
-#     new_record_Id, digest, tx_hash = store_record(singleFilePath)
-#     print(f"  - Record ID :         {new_record_Id}")
-#     print(f"  - File hash :         {digest}")
-#     print(f"  - transaction hash :       {tx_hash}")
-#     print("------------------------------------\n")
-
-#     print(f"  - Total records:       {get_total_record()}") 
-
-# if __name__ == "__main__":
-#     main()
