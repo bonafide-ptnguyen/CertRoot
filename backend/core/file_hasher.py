@@ -32,7 +32,7 @@ def write_csv(data: List[Tuple[str, str]]):
     try:
         with open(OUTPUT_FILE, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            writer.writerow(["Filename", "Hash", "Record ID", "Transaction Hash"])
+            writer.writerow(["Filename", "Hash", "Record ID"])
             writer.writerows(data)
     except Exception as e:
         print(f"Error writing CSV: {e}")
@@ -73,3 +73,20 @@ def process_folder_once() -> List[Tuple[str, str]]:
         print(" No new files found.")
 
     return new_data
+
+# def process_folder_test():
+#     """
+#     Process only *new* files from INPUT_DIR.
+#     Hash them and update MongoDB and CSV.
+#     """
+#     sample_file_path = "sample_files"
+#     os.makedirs(sample_file_path, exist_ok=True)
+
+#     for fname in os.listdir(sample_file_path):
+#         fpath = os.path.join(sample_file_path, fname)
+#         if os.path.isfile(fpath):
+#             try:
+#                 digest = hash_file(fpath)
+#                 print(f"New file hashed: {fname} - hash digest: {digest}\n")
+#             except Exception as e:
+#                 print(f" Error hashing {fname}: {e}")
