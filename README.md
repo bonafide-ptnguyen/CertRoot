@@ -1,6 +1,6 @@
 To run this Application, use the commands below:
 
->>> Git clone 
+>>> Git clone https://github.com/bonafide-ptnguyen/CertRoot.git
 
 For Backend:
 >>> cd backend
