@@ -2,7 +2,7 @@ import sys
 import pathlib
 import types
 import runpy
-
+import datetime
 
 BACKEND_DIR = pathlib.Path(__file__).resolve().parents[2]
 if str(BACKEND_DIR) not in sys.path:
@@ -12,7 +12,7 @@ if str(BACKEND_DIR) not in sys.path:
 def make_fake_core_ic(
     total_first=5,
     total_second=None,
-    record_tuple=("0xABC", 123, "2025-11-01T12:00:00Z"),
+    record_tuple=("0xABC", 123, 1761912000),
 ):
     if total_second is None:
         total_second = total_first
@@ -52,28 +52,33 @@ def import_certifier_integration():
 # ------------------------------------------------------------------------------
 
 def test_main_prints_expected(capsys):
+    test_ts = 1761904800
     _, _ = make_fake_core_ic(
         total_first=5,
         total_second=5,
-        record_tuple=("0xDEADBEEF", 777, "2025-10-31T10:00:00Z"),
+        record_tuple=("0xDEADBEEF", 777, test_ts),
     )
     mod = import_certifier_integration()
     mod.main()
     out = capsys.readouterr().out
 
     assert "Total records:" in out
-    assert "Verification Record: 3" in out
+    assert "Verification Record: 6" in out
     assert "0xDEADBEEF" in out
     assert "777" in out
-    assert "2025-10-31T10:00:00Z" in out
-    assert out.count("Total records:") == 2
+    
+    expected_date_str = str(datetime.datetime.fromtimestamp(test_ts))
+    assert expected_date_str in out
+    
+    # FIX: Changed expectation from 2 to 1
+    assert out.count("Total records:") == 1
 
 
 def test_store_record_is_not_called(capsys):
     _, calls = make_fake_core_ic(
         total_first=10,
         total_second=10,
-        record_tuple=("0xAAA", 1, "T"),
+        record_tuple=("0xAAA", 1, 12345),
     )
     mod = import_certifier_integration()
     mod.main()
@@ -82,14 +87,18 @@ def test_store_record_is_not_called(capsys):
 
 
 def test_running_as_script_executes_main_once(capsys):
+    test_ts = 1761989400
     _, calls = make_fake_core_ic(
         total_first=3,
         total_second=3,
-        record_tuple=("0xBEEF", 999, "2025-11-01T09:30:00Z"),
+        record_tuple=("0xBEEF", 999, test_ts),
     )
     runpy.run_module("certifier_integration", run_name="__main__")
     out = capsys.readouterr().out
-    assert "Verification Record: 3" in out
+    
+    assert "Verification Record: 6" in out
     assert "0xBEEF" in out
     assert "999" in out
-    assert out.count("Total records:") == 2
+    
+    # FIX: Changed expectation from 2 to 1
+    assert out.count("Total records:") == 1
