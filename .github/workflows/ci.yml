@@ -85,3 +85,19 @@ jobs:
         working-directory: backend
         run: |
           docker build -t certifier-backend:latest .
+
+  # ----------------------------------------
+  # Job 4: Build Docker image for Frontend
+  # ----------------------------------------
+  build-frontend-image:
+    runs-on: ubuntu-latest
+    # No 'needs' required - runs in parallel with backend jobs!
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build frontend Docker image
+        working-directory: frontend
+        run: |
+          docker build -t certifier-frontend:latest .
