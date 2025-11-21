@@ -6,6 +6,7 @@ from .encrypt_key import KEYSTORE_PATH
 import getpass
 from eth_account import Account
 from .json_utils import get_config
+from .database import upsert_hashes
 
 # RPC_URL=os.getenv("RPC_URL")
 # MY_ADDRESS=os.getenv("MY_ADDRESS")
@@ -66,6 +67,12 @@ def store_record(singleFilePath):
     # This executes the state-changing transaction
     tx_hash = contract_instance.functions.store(hash_bytes32).transact()
     new_record_Id = contract_instance.functions.get_total_records().call() - 1
+
+    # --- Write to MongoDB ---
+    new_data = []
+    file_name_with_ext = os.path.basename(singleFilePath)
+    new_data.append((file_name_with_ext, digest, new_record_Id))
+    upsert_hashes(new_data)
 
     return new_record_Id, digest, tx_hash
 
