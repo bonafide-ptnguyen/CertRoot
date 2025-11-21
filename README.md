@@ -6,6 +6,10 @@ A secure, blockchain-based certification and file verification system. CertRoot 
 Check out the live application here:  
 👉 **[https://cert-root.vercel.app/](https://cert-root.vercel.app/)**
 
+**Backup links**:
+* **Frontend:** [https://certroot-frontend.onrender.com/](https://certroot-frontend.onrender.com/)
+* **Backend:** [https://certroot-backend.onrender.com/docs](https://certroot-backend.onrender.com/docs)
+
 > **Note:** Due to free-tier limitations on our hosting provider, the backend services may spin down after periods of inactivity. If the link above does not load properly or data is missing, please contact a team member to trigger a redeployment on Render.
 
 ---
