@@ -101,3 +101,26 @@ jobs:
         working-directory: frontend
         run: |
           docker build -t certifier-frontend:latest .
+
+  # ----------------------------------------
+  # Job 5: Deploy to Render (CD)
+  # ----------------------------------------
+  deploy:
+    runs-on: ubuntu-latest
+    # Only run this job if ALL previous testing/building jobs passed
+    needs: [unit-tests, system-tests, build-backend-image, build-frontend-image]
+
+    # Only deploy if we are pushing to the 'main' branch (or 'develop')
+    # We don't want to deploy every random feature branch!
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/ci-implementation'
+
+    steps:
+      - name: Deploy Backend
+        run: |
+          echo "Triggering Backend Deployment..."
+          curl "${{ secrets.RENDER_BACKEND_DEPLOY_URL }}"
+
+      - name: Deploy Frontend
+        run: |
+          echo "Triggering Frontend Deployment..."
+          curl "${{ secrets.RENDER_FRONTEND_DEPLOY_URL }}"
